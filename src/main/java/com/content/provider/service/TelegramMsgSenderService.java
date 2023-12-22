@@ -6,6 +6,8 @@ import com.content.provider.api.telegram.TelegramFeignClient;
 import com.content.provider.message.preprocess.MessagePrettier;
 import com.content.provider.model.ScrapedNews;
 import com.content.provider.repository.ScrapedNewRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,8 @@ public class TelegramMsgSenderService {
     private final TelegramFeignClient telegramFeignClient;
     private final MessagePrettier messagePrettier;
     private final ScrapedNewRepository scrapedNewRepository;
+
+    private  final Logger LOGGER = LoggerFactory.getLogger(TelegramMsgSenderService.class);
 
     public TelegramMsgSenderService(TelegramFeignClient telegramFeignClient,
                                     @Value("${telegram.chat.id}") String chatId, @Qualifier("TelegramMessagePrettify") MessagePrettier messagePrettier, ScrapedNewRepository scrapedNewRepository) {
@@ -33,7 +37,7 @@ public class TelegramMsgSenderService {
         String title = scrapedNews.getTitle();
         String file = scrapedNews.getImg();
 
-        ResponseMessage response = new TelegramResponseDto();
+        ResponseMessage response;
         try {
             if (file.contains(".mov") || file.contains(".mp4")) {
                 response = telegramFeignClient.sendVideoWithCaption(chatId, messagePrettier.prettifyMessage(msgText, title), file, "MARKDOWN");
@@ -41,6 +45,7 @@ public class TelegramMsgSenderService {
                 response = telegramFeignClient.sendPhotoWithCaption(chatId, messagePrettier.prettifyMessage(msgText, title), file, "MARKDOWN");
             scrapedNews.setTelegramStatus(response.isOk() ? "S" : null);
         } catch (Exception e) {
+            LOGGER.error("Sending message to telegram with message id ".concat(scrapedNews.getId().toString()).concat(" Failed"));
             e.printStackTrace();
         } finally {
             scrapedNews.setTelegramStatus("S");

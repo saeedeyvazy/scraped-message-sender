@@ -25,6 +25,8 @@
 2023-12-22 12:26:41,926 INFO o.s.b.StartupInfoLogger [main] Starting ProviderApplication using Java 17.0.9 with PID 5432 (/home/saeed/Documents/Project/provider/target/classes started by saeed in /home/saeed/Documents/Project/provider)
 2023-12-22 12:26:41,931 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
 2023-12-22 12:26:43,027 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+
+
 2023-12-22 12:26:43,093 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 55 ms. Found 1 JPA repository interface.
 2023-12-22 12:26:43,353 INFO o.s.c.c.s.GenericScope [main] BeanFactory id=f3df676d-3055-39c0-b7b5-ebbf354bdb65
 2023-12-22 12:26:43,856 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
