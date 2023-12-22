@@ -15,6 +15,8 @@ public class EittaMessagePreProcessor implements MessagePreProcessor {
 
     @Value("${eitta.title.emoji}")
     private String titleEmoji;
+    @Value("${eitta.chat.id}")
+    private String chatId;
 
     @Override
     public String preprocessMessageContent(String messageContent) {
@@ -24,7 +26,7 @@ public class EittaMessagePreProcessor implements MessagePreProcessor {
         String[] preparedParagraphList = paragraphList.toArray(String[]::new);
         if (preparedParagraphList.length >= 2)
             preparedParagraphList = new String[]{contentEmoji.concat(preparedParagraphList[0]), preparedParagraphList[1]};
-        return String.join(contentEmoji, preparedParagraphList);
+        return String.join(contentEmoji, preparedParagraphList).concat("@").concat(chatId);
     }
 
     @Override

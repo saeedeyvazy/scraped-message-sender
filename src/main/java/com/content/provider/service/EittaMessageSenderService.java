@@ -8,7 +8,6 @@ import com.content.provider.model.ScrapedNews;
 import com.content.provider.repository.ScrapedNewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -36,7 +35,7 @@ public class EittaMessageSenderService {
         eittaRequestDto.setChatId(chatId);
 
         EittaResponseDto response = eittaService
-                .sendPhotoWithCaptionAndContentToChannel(eittaRequestDto.getChatId(),
+                .sendMessage(eittaRequestDto.getChatId(),
                         eittaRequestDto.getParseMode(),
                         eittaRequestDto.getCaption(),
                         eittaRequestDto.getFile(),

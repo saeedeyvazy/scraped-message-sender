@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.content</groupId>
 	<artifactId>provider</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<name>provider</name>
 	<description>Content Provider For Different Message Partner</description>
 	<properties>

@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface IEittaService {
     @PostMapping("/sendFile")
     EittaResponseDto
-    sendPhotoWithCaptionAndContentToChannel(@RequestParam(value = "chat_id") String chatId,
-                                            @RequestParam(value = "parse_mode") String parseMode,
-                                            @RequestParam String caption,
-                                            @RequestParam String file,
-                                            @RequestParam String pin,
-                                            @RequestParam String date
+    sendMessage(@RequestParam(value = "chat_id") String chatId,
+                @RequestParam(value = "parse_mode") String parseMode,
+                @RequestParam String caption,
+                @RequestParam String file,
+                @RequestParam String pin,
+                @RequestParam String date
     );
 }
